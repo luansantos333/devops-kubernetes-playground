@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-stateful-set
+  namespace: zabbix-namespace
+  labels: 
+    app: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres # has to match .spec.template.metadata.labels
+  serviceName: headless-postgres-service
+  replicas: 1 # by default is 1
+  minReadySeconds: 10 # by default is 0
+  template:
+    metadata:
+      labels:
+        app: postgres # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: postgres
+        image: postgres:17.4-alpine3.21
+        env: 
+          - name: POSTGRES_USER
+            valueFrom:
+             secretKeyRef: 
+               name: postgres-credentials
+               key: user
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+             secretKeyRef: 
+              name: postgres-credentials
+              key: password
+        volumeMounts:
+        - name: pgfiles
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: pgfiles
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: standard
+      resources:
+        requests:
+          storage: 1Gi

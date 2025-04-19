@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-deployment
+  namespace: zabbix-namespace
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      securityContext:  
+        runAsUser: 0   
+        #runAsGroup: 0
+        #fsGroup: 0
+      containers: 
+        - name: grafana-container
+          image: grafana/grafana:main 
+          securityContext:  
+            allowPrivilegeEscalation: false
+            #readOnlyRootFilesystem: true
+          volumeMounts: 
+            - mountPath: /var/lib/grafana
+              name: volume-grafana
+          readinessProbe: 
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          env: 
+            - name:  GF_INSTALL_PLUGINS
+              value: "alexanderzobnin-zabbix-app"
+      volumes: 
+        - name: volume-grafana
+          persistentVolumeClaim: 
+            claimName: persistent-volume-claim-1
