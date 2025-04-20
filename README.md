@@ -3,4 +3,13 @@ Implementação de cluster Kubernetes para orquestração de Zabbix Server, Zabb
 
 ---
 
-### Tecnologias
+## Tecnologias
+
+    - Kubernetes
+    - KIND
+    - Golang
+    - Minikube 
+    - Zabbix 
+    - Grafana
+    - Postgresql
+---
