@@ -9,4 +9,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /home/luangomes/Documentos/vs-code/devops-kubernetes-playground/volume
+    path: ${PV_MOUNT_PATH}

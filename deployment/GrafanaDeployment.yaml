@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana-deployment
-  namespace: zabbix-namespace
+  namespace: ${NAMESPACE}
   labels:
     app: grafana
 spec:
@@ -40,4 +40,4 @@ spec:
       volumes: 
         - name: volume-grafana
           persistentVolumeClaim: 
-            claimName: persistent-volume-claim-1
+            claimName: persistent-volume-claim

@@ -5,6 +5,6 @@ nodes:
 - role: control-plane
 - role: worker
   extraMounts: 
-  - hostPath: /home/luangomes/Documentos/vs-code/devops-kubernetes-playground/cluster/storage
+  - hostPath: ${CLUSTER_STORAGE}
     containerPath: /files
 - role: worker

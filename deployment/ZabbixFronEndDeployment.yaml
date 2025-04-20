@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: zabbix-frontend-deployment
-  namespace: zabbix-namespace
+  namespace: ${NAMESPACE}
   labels:
     app: zabbix-frontend
 spec:
@@ -32,7 +32,7 @@ spec:
                 name: postgres-credentials
                 key: password
            - name: ZBX_SERVER_HOST
-             value: zabbix-server-service ##.zabbix-namespace.svc.cluster.local
+             value: zabbix-server-service ##.${NAMESPACE}.svc.cluster.local
            - name: POSTGRES_USER
              valueFrom:
               secretKeyRef:

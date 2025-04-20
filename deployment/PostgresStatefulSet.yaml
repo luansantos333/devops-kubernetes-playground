@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgres-stateful-set
-  namespace: zabbix-namespace
+  namespace: ${NAMESPACE}
   labels: 
     app: postgres
 spec:
@@ -20,7 +20,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: postgres
-        image: postgres:17.4-alpine3.21
+        image: postgres:latest
         env: 
           - name: POSTGRES_USER
             valueFrom:
