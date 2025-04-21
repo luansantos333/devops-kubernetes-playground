@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: zabbix-ha-stateful-set
+  namespace: ${NAMESPACE}
+  labels: 
+    app: zabbix-server
+spec:
+  selector:
+    matchLabels:
+      app: zabbix-server 
+      serviceName: headless-zabbix-ha-service
+  replicas: 2 
+  minReadySeconds: 10 # by default is 0
+  template:
+    metadata:
+      labels:
+        app: zabbix-server 
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: zabbix-server
+        image: zabbix-server-pgsql:7.2.5-alpine
+        env: 
+          - name: DB_SERVER_HOST
+            value: headless-postgres-service
+          - name: POSTGRES_PASSWORD
+            valueFrom: 
+              secretKeyRef:
+                name: zabbix-credentials
+                key: password
+          - name: POSTGRES_USER
+            valueFrom: 
+              secretKeyRef:
+                name: zabbix-credentials
+                key: user
+          - name: ZBX_HANODENAME
+            value: "zabbix-node-$(STATEFULSET_NAME)"
+        volumeMounts:
+        - name: alertscripts
+          mountPath: /usr/lib/zabbix/alertscripts
+  volumeClaimTemplates:
+  - metadata:
+      name: alertscripts
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: standard
+      resources:
+        requests:
+          storage: 100Mi
