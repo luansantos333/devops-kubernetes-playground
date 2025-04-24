@@ -30,4 +30,4 @@ Em seguida você executar o comando ```devbox shell``` dentro do diretório do r
     ``chmod 771 kmanagement.sh`` 
 - Execute o script e prossiga de acordo com as configurações necessárias 
 
-(./images/default.png)
+!(./images/default.png)
