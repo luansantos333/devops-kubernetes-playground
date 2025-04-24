@@ -26,3 +26,8 @@ Em seguida você executar o comando ```devbox shell``` dentro do diretório do r
 
 ### Criando Cluster local Kubernetes com Kind
 
+- Dê permissões de execução para o script kmanagement.sh  
+    ``chmod 771 kmanagement.sh`` 
+- Execute o script e prossiga de acordo com as configurações necessárias 
+
+(devops-kubernetes-playground/images/default.png)

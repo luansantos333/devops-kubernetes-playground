@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-echo -e "-------------- INITIALIZE KUBERNETES CLUSTER ------------\n"
+echo -e "-------------- KUBERNETES MANAGMENT  ------------\n"
 
 echo "What you want to do?" 
 echo -e "1)Create kind cluster\n2)Apply Service files\n3)Apply Storage files\n4)Apply Security Files\n5)Apply Deployment Files\n6)Create Zabbix DB Schema\n7)Delete all\n8)Exit\n"
