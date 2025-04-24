@@ -17,22 +17,17 @@ spec:
     spec:
       containers: 
         - name: zabbix-frontend-container
-          image: zabbix/zabbix-web-nginx-pgsql:alpine-trunk
+          image: zabbix/zabbix-web-nginx-pgsql:7.2.6-alpine
           env: 
            - name: DB_SERVER_HOST
              value: headless-postgres-service
-           - name: POSTGRES_USER
-             valueFrom: 
-              secretKeyRef: 
-                name: postgres-credentials
-                key: user
            - name: POSTGRES_PASSWORD
              valueFrom: 
               secretKeyRef: 
                 name: postgres-credentials
                 key: password
            - name: ZBX_SERVER_HOST
-             value: zabbix-server-service ##.${NAMESPACE}.svc.cluster.local
+             value: headless-zabbix-ha-service ##.${NAMESPACE}.svc.cluster.local
            - name: POSTGRES_USER
              valueFrom:
               secretKeyRef:

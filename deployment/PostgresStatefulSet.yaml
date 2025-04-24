@@ -20,7 +20,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: postgres
-        image: postgres:latest
+        image: postgres:17.4
         env: 
           - name: POSTGRES_USER
             valueFrom:

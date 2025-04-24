@@ -4,23 +4,23 @@ metadata:
   name: zabbix-ha-stateful-set
   namespace: ${NAMESPACE}
   labels: 
-    app: zabbix-server
+    app: zabbix-server-ha
 spec:
   selector:
     matchLabels:
       app: zabbix-server 
-      serviceName: headless-zabbix-ha-service
+  serviceName: headless-zabbix-ha-service
   replicas: 2 
   minReadySeconds: 10 # by default is 0
   template:
     metadata:
       labels:
-        app: zabbix-server 
+        app: zabbix-server
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: zabbix-server
-        image: zabbix-server-pgsql:7.2.5-alpine
+      - name: zabbix-server-container
+        image: zabbix/zabbix-server-pgsql:7.2.6-alpine
         env: 
           - name: DB_SERVER_HOST
             value: headless-postgres-service
@@ -35,8 +35,14 @@ spec:
                 name: zabbix-credentials
                 key: user
           - name: ZBX_HANODENAME
-            value: "zabbix-node-$(STATEFULSET_NAME)"
-        volumeMounts:
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name 
+          - name: ZBX_NODEADDRESS
+            valueFrom: 
+              fieldRef:
+                fieldPath: status.podIP 
+        volumeMounts: 
         - name: alertscripts
           mountPath: /usr/lib/zabbix/alertscripts
   volumeClaimTemplates:
