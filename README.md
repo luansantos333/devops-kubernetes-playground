@@ -80,29 +80,26 @@ O uso do **devbox** garante um ambiente de desenvolvimento isolado e reprodutív
 
 Execute o script principal e siga as instruções no terminal:
 
-./kmanagement.sh
-
-text
+`./kmanagemen.sh`
 
 Você verá um menu interativo com as opções:
 
-Criar cluster KIND
+- Criar cluster KIND
 
-Aplicar arquivos de Service
+- Aplicar arquivos de Service
 
-Aplicar arquivos de Storage
+- Aplicar arquivos de Storage
 
-Aplicar arquivos de Segurança
+- Aplicar arquivos de Segurança
 
-Aplicar arquivos de Deployment
+- Aplicar arquivos de Deployment
 
-Criar schema do banco Zabbix
+- Criar schema do banco Zabbix
 
-Deletar tudo
+- Deletar tudo
 
-Sair
+- Sair
 
-text
 
 Escolha a opção desejada e siga as instruções na tela.
 
