@@ -25,16 +25,13 @@ case $OPTION in
         envsubst < Namespace.yaml | kubectl apply -f -
         kubens $NAMESPACE
         ;;
-
-
     2) 
         envsubst < service/DBService.yaml | kubectl apply -f -
         envsubst < service/ZabbixFrontendService.yaml | kubectl apply -f -
         envsubst < service/GrafanaService.yaml | kubectl apply -f -
         envsubst < service/ZabbixHAServerService.yaml | kubectl apply -f - 
         ;;
-
-    3) 
+   3) 
 
         echo -e "Pod storage:"
         read PV_MOUNT_PATH
@@ -42,20 +39,17 @@ case $OPTION in
         envsubst < storage/PV.yaml | kubectl apply -f -
         kubectl apply -f storage/PVC.yaml
         ;;
-
     4) 
 
         envsubst < security/PostgresSecret.yaml | kubectl apply -f -
         envsubst < security/ZabbixSecret.yaml | kubectl apply -f -
         ;;
-    
     5)
         envsubst < deployment/PostgresStatefulSet.yaml | kubectl apply -f -
         envsubst < deployment/GrafanaDeployment.yaml | kubectl apply -f -
         envsubst < deployment/ZabbixFronEndDeployment.yaml | kubectl apply -f -
         envsubst < deployment/ZabbixServerHAStatefulSet.yaml | kubectl apply -f -
         ;;
-
     6) 
         
         kubectl get pods -o wide
@@ -64,7 +58,6 @@ case $OPTION in
         
         `kubectl exec -it ${POSTGRES_DEPLOYMENT_NAME} -- psql -U zabbix -d zabbix < create.sql`
          ;;
-
     7) 
         ## DELETE NAMESPACE
         envsubst < Namespace.yaml | kubectl delete -f -
