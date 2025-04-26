@@ -117,7 +117,7 @@ Escolha a opção desejada e siga as instruções na tela.
 
 ## Estrutura do Projeto
 
-![image](/devops-kubernetes-playground/images/filestructuretree.png)
+![image](images/filestructuretree.png)
 ---
 
 ## Licença
@@ -128,7 +128,7 @@ Este projeto é open-source e está sob a licença [MIT](LICENSE).
 
 ## Imagem de Exemplo
 
-![image](/devops-kubernetes-playground/images/default.png)
+![image](images/default.png)
 
 ---
 
