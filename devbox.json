@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
     "packages": ["kubectl@latest", "envsubst@latest",
-  "kubectx@latest", "go@latest", "kind@latest", "kubent@latest", "kubernetes-helm@latest", "kluctl@latest", "k9s@latest", "jq@latest", "go@latest", "minikube@latest"],
+  "kubectx@latest", "go@latest", "tree@2.2.1", "kind@latest", "kubent@latest", "kubernetes-helm@latest", "kluctl@latest", "k9s@latest", "jq@latest", "go@latest", "minikube@latest"],
     "shell": {
       "init_hook": [
         "export GOBIN=$HOME/go/bin",
