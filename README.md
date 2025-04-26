@@ -19,7 +19,7 @@ Este projeto oferece um ambiente automatizado para orquestração de um cluster 
 
 ## Descrição
 
-Este repositório contém um script interativo (`kmanagement.sh`) que automatiza as principais tarefas de gerenciamento de um cluster Kubernetes local, incluindo:
+Este repositório contém um script interativo (`kubemanager.sh`) que automatiza as principais tarefas de gerenciamento de um cluster Kubernetes local, incluindo:
 
 - Criação de cluster com KIND
 - Aplicação de arquivos de serviço, storage, segurança e deployment
@@ -72,7 +72,7 @@ O uso do **devbox** garante um ambiente de desenvolvimento isolado e reprodutív
 3. **Dê permissão de execução ao script:**
 
 
-    `chmod 771 kmanagement.s`
+    `chmod 771 kubemanager.s`
 
 ---
 
